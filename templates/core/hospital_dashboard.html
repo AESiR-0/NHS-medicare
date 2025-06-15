@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Hospital Dashboard - Medicare{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow rounded-lg p-6">
+    <h1 class="text-2xl font-bold mb-6">Hospital Dashboard</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-blue-50 p-4 rounded-lg">
+            <h2 class="text-lg font-semibold mb-2">Shift Management</h2>
+            <div class="space-y-2">
+                <a href="{% url 'shift_create' %}" class="block text-blue-600 hover:text-blue-800">
+                    Create New Shift
+                </a>
+                <a href="{% url 'shift_list' %}" class="block text-blue-600 hover:text-blue-800">
+                    View All Shifts
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-green-50 p-4 rounded-lg">
+            <h2 class="text-lg font-semibold mb-2">Hospital Information</h2>
+            <div class="space-y-2">
+                <div class="text-gray-700">
+                    <strong>Name:</strong> {{ user.hospital.name }}
+                </div>
+                <div class="text-gray-700">
+                    <strong>Trust:</strong> {{ user.hospital.trust.name }}
+                </div>
+                <div class="text-gray-700">
+                    <strong>Address:</strong> {{ user.hospital.address }}
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-purple-50 p-4 rounded-lg">
+            <h2 class="text-lg font-semibold mb-2">Quick Stats</h2>
+            <div class="space-y-2">
+                <div class="text-purple-600">
+                    Open Shifts: {{ user.hospital.shifts.filter.status='open'|length }}
+                </div>
+                <div class="text-purple-600">
+                    Booked Shifts: {{ user.hospital.shifts.filter.status='booked'|length }}
+                </div>
+                <div class="text-purple-600">
+                    Completed Shifts: {{ user.hospital.shifts.filter.status='completed'|length }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

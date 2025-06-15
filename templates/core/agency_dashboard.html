@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Agency Dashboard - Medicare{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow rounded-lg p-6">
+    <h1 class="text-2xl font-bold mb-6">Agency Dashboard</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-blue-50 p-4 rounded-lg">
+            <h2 class="text-lg font-semibold mb-2">Nurse Management</h2>
+            <div class="space-y-2">
+                <a href="{% url 'nurse_list' %}" class="block text-blue-600 hover:text-blue-800">
+                    View All Nurses
+                </a>
+                <a href="{% url 'nurse_create' %}" class="block text-blue-600 hover:text-blue-800">
+                    Add New Nurse
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-green-50 p-4 rounded-lg">
+            <h2 class="text-lg font-semibold mb-2">Shift Management</h2>
+            <div class="space-y-2">
+                <a href="{% url 'available_shifts' %}" class="block text-green-600 hover:text-green-800">
+                    View Available Shifts
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-purple-50 p-4 rounded-lg">
+            <h2 class="text-lg font-semibold mb-2">Approved Trusts</h2>
+            <div class="space-y-2">
+                {% for access in user.agency.trustagencyaccess_set.all %}
+                    {% if access.approved %}
+                        <div class="text-purple-600">
+                            {{ access.trust.name }}
+                        </div>
+                    {% endif %}
+                {% empty %}
+                    <div class="text-gray-500">No approved trusts yet</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

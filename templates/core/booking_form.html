@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Shift - Medicare{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow rounded-lg p-6">
+    <h1 class="text-2xl font-bold mb-6">Book Shift</h1>
+
+    <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+        <h2 class="text-lg font-semibold mb-2">Shift Details</h2>
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <p class="text-sm text-gray-600">Hospital</p>
+                <p class="font-medium">{{ shift.hospital.name }}</p>
+            </div>
+            <div>
+                <p class="text-sm text-gray-600">Ward</p>
+                <p class="font-medium">{{ shift.ward }}</p>
+            </div>
+            <div>
+                <p class="text-sm text-gray-600">Specialty Required</p>
+                <p class="font-medium">{{ shift.specialty_required }}</p>
+            </div>
+            <div>
+                <p class="text-sm text-gray-600">Date & Time</p>
+                <p class="font-medium">{{ shift.shift_date }} at {{ shift.shift_time }}</p>
+            </div>
+        </div>
+    </div>
+
+    <form method="post" class="space-y-6">
+        {% csrf_token %}
+        
+        {% for field in form %}
+        <div>
+            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                {{ field.label }}
+            </label>
+            <div class="mt-1">
+                {{ field }}
+                {% if field.errors %}
+                <div class="text-red-500 text-sm mt-1">
+                    {{ field.errors }}
+                </div>
+                {% endif %}
+            </div>
+            {% if field.help_text %}
+            <p class="mt-2 text-sm text-gray-500">{{ field.help_text }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <div class="flex justify-end space-x-4">
+            <a href="{% url 'available_shifts' %}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+                Cancel
+            </a>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Book Shift
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %} 
