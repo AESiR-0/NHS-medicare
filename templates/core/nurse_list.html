@@ -41,11 +41,13 @@
                         </span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        {% if not nurse.is_approved %}
                         <a href="{% url 'nurse_document_upload' nurse.id %}" class="text-blue-600 hover:text-blue-900 mr-3">
                             Upload Document
                         </a>
+                        {% endif %}
                         {% if nurse.documents.exists %}
-                        <a href="#" class="text-green-600 hover:text-green-900">
+                        <a href="{% url 'nurse_documents' nurse.id %}" class="text-green-600 hover:text-green-900">
                             View Documents
                         </a>
                         {% endif %}

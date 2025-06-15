@@ -26,7 +26,12 @@ def dashboard(request):
     elif request.user.role == 'agency':
         return render(request, 'core/agency_dashboard.html')
     elif request.user.role == 'hospital':
-        return render(request, 'core/hospital_dashboard.html')
+        context = {
+            'open_shifts_count': request.user.hospital.shifts.filter(status='open').count(),
+            'booked_shifts_count': request.user.hospital.shifts.filter(status='booked').count(),
+            'completed_shifts_count': request.user.hospital.shifts.filter(status='completed').count(),
+        }
+        return render(request, 'core/hospital_dashboard.html', context)
     return redirect('login')
 
 # Agency Views
@@ -66,6 +71,16 @@ def nurse_document_upload(request, nurse_id):
     else:
         form = NurseDocumentForm()
     return render(request, 'core/document_form.html', {'form': form, 'nurse': nurse})
+
+@login_required
+@user_passes_test(is_agency)
+def nurse_documents(request, nurse_id):
+    nurse = get_object_or_404(Nurse, id=nurse_id, agency=request.user.agency)
+    documents = nurse.documents.all().order_by('-uploaded_at')
+    return render(request, 'core/nurse_documents.html', {
+        'nurse': nurse,
+        'documents': documents
+    })
 
 # Hospital Views
 @login_required

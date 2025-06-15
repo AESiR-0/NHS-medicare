@@ -38,13 +38,13 @@
             <h2 class="text-lg font-semibold mb-2">Quick Stats</h2>
             <div class="space-y-2">
                 <div class="text-purple-600">
-                    Open Shifts: {{ user.hospital.shifts.filter.status='open'|length }}
+                    Open Shifts: {{ open_shifts_count }}
                 </div>
                 <div class="text-purple-600">
-                    Booked Shifts: {{ user.hospital.shifts.filter.status='booked'|length }}
+                    Booked Shifts: {{ booked_shifts_count }}
                 </div>
                 <div class="text-purple-600">
-                    Completed Shifts: {{ user.hospital.shifts.filter.status='completed'|length }}
+                    Completed Shifts: {{ completed_shifts_count }}
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@ urlpatterns = [
     path('nurses/', views.nurse_list, name='nurse_list'),
     path('nurses/create/', views.nurse_create, name='nurse_create'),
     path('nurses/<int:nurse_id>/documents/', views.nurse_document_upload, name='nurse_document_upload'),
+    path('nurses/<int:nurse_id>/documents/list/', views.nurse_documents, name='nurse_documents'),
     
     # Hospital URLs
     path('shifts/create/', views.shift_create, name='shift_create'),

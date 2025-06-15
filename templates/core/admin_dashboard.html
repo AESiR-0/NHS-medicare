@@ -10,10 +10,10 @@
         <div class="bg-blue-50 p-4 rounded-lg">
             <h2 class="text-lg font-semibold mb-2">Pending Approvals</h2>
             <div class="space-y-2">
-                <a href="{% url 'admin:nurse_changelist' %}?is_approved__exact=0" class="block text-blue-600 hover:text-blue-800">
+                <a href="{% url 'admin:core_nurse_changelist' %}?is_approved__exact=0" class="block text-blue-600 hover:text-blue-800">
                     Pending Nurses
                 </a>
-                <a href="{% url 'admin:trustagencyaccess_changelist' %}?approved__exact=0" class="block text-blue-600 hover:text-blue-800">
+                <a href="{% url 'admin:core_trustagencyaccess_changelist' %}?approved__exact=0" class="block text-blue-600 hover:text-blue-800">
                     Pending Agency Trust Access
                 </a>
             </div>
@@ -22,13 +22,13 @@
         <div class="bg-green-50 p-4 rounded-lg">
             <h2 class="text-lg font-semibold mb-2">Quick Links</h2>
             <div class="space-y-2">
-                <a href="{% url 'admin:nhstrust_changelist' %}" class="block text-green-600 hover:text-green-800">
+                <a href="{% url 'admin:core_nhstrust_changelist' %}" class="block text-green-600 hover:text-green-800">
                     Manage NHS Trusts
                 </a>
-                <a href="{% url 'admin:hospital_changelist' %}" class="block text-green-600 hover:text-green-800">
+                <a href="{% url 'admin:core_hospital_changelist' %}" class="block text-green-600 hover:text-green-800">
                     Manage Hospitals
                 </a>
-                <a href="{% url 'admin:agency_changelist' %}" class="block text-green-600 hover:text-green-800">
+                <a href="{% url 'admin:core_agency_changelist' %}" class="block text-green-600 hover:text-green-800">
                     Manage Agencies
                 </a>
             </div>
@@ -37,10 +37,10 @@
         <div class="bg-purple-50 p-4 rounded-lg">
             <h2 class="text-lg font-semibold mb-2">System Overview</h2>
             <div class="space-y-2">
-                <a href="{% url 'admin:shift_changelist' %}" class="block text-purple-600 hover:text-purple-800">
+                <a href="{% url 'admin:core_shift_changelist' %}" class="block text-purple-600 hover:text-purple-800">
                     View All Shifts
                 </a>
-                <a href="{% url 'admin:booking_changelist' %}" class="block text-purple-600 hover:text-purple-800">
+                <a href="{% url 'admin:core_booking_changelist' %}" class="block text-purple-600 hover:text-purple-800">
                     View All Bookings
                 </a>
             </div>
